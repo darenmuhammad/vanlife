@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Vans from "./pages/Vans";
-import VanDetail from "./pages/VanDetail";
-import Layout from "./components/Layout";
+import NotFound from "./pages/NotFound";
+import Vans from "./pages/Vans/Vans";
+import VanDetail from "./pages/Vans/VanDetail";
 import Dashboard from "./pages/Host/Dashboard";
 import Income from "./pages/Host/Income";
 import HostVans from "./pages/Host/HostVans";
@@ -12,6 +12,7 @@ import HostVanInfo from "./pages/Host/HostVanInfo";
 import HostVanPhotos from "./pages/Host/HostVanPhotos";
 import HostVanPricing from "./pages/Host/HostVanPricing";
 import Reviews from "./pages/Host/Reviews";
+import Layout from "./components/Layout";
 import HostLayout from "./components/HostLayout";
 
 import "./server";
@@ -39,6 +40,7 @@ function App() {
                         </Route>
                         <Route path="reviews" element={<Reviews />} />
                     </Route>
+                    <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>
         </BrowserRouter>
