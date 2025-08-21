@@ -1,20 +1,18 @@
-import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import { Link, useSearchParams, useLoaderData } from "react-router-dom";
 import getVans from "../../api";
+
+// eslint-disable-next-line react-refresh/only-export-components
+export function loader() {
+    return getVans();
+}
 
 export default function Vans() {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [vansData, setVansData] = useState([]);
+    const [error, setError] = useState(null);
+    const vansData = useLoaderData();
 
     const typeFilter = searchParams.get("type");
-
-    useEffect(() => {
-        async function loadVans() {
-            const data = await getVans();
-            setVansData(data);
-        }
-        loadVans();
-    }, []);
 
     const displayedVans = typeFilter
         ? vansData.filter((van) => van.type === typeFilter)
@@ -53,6 +51,12 @@ export default function Vans() {
             return prevFilter;
         });
     };
+
+    if (error) {
+        return (
+            <h1 aria-live="assertive">There was an error: {error.message}</h1>
+        );
+    }
 
     return (
         <div className="van-list-container">
