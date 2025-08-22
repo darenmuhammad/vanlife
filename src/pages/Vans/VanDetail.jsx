@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
-import { useParams, Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useLoaderData } from "react-router-dom";
+import { getVans } from "../../api";
+
+// eslint-disable-next-line react-refresh/only-export-components
+export function loader({ params }) {
+    return getVans(params.id);
+}
 
 export default function VanDetail() {
-    const params = useParams();
     const location = useLocation();
-
-    const [van, setVan] = useState(null);
-
-    useEffect(() => {
-        fetch(`/api/vans/${params.id}`)
-            .then((res) => res.json())
-            .then((data) => setVan(data.vans));
-    }, [params.id]);
+    const van = useLoaderData();
 
     const search = location.state?.search || ""; //location.state && location.state.search (before optional chaining)
     const type = location.state?.type || "all";

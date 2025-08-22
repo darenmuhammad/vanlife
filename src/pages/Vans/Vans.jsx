@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useSearchParams, useLoaderData } from "react-router-dom";
-import getVans from "../../api";
+import { getVans } from "../../api";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export function loader() {
