@@ -6,6 +6,7 @@ export default function Error() {
     return (
         <>
             <h1>{error.message}</h1>
+            <h1>status: {error.status}</h1>
         </>
     );
 }
