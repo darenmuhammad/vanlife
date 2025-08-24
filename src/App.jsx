@@ -56,13 +56,13 @@ const router = createBrowserRouter(
                 <Route
                     index
                     element={<Dashboard />}
-                    loader={async () => await requireAuth()}
+                    loader={async ({ request }) => await requireAuth(request)}
                     errorElement={<Error />}
                 />
                 <Route
                     path="income"
                     element={<Income />}
-                    loader={async () => await requireAuth()}
+                    loader={async ({ request }) => await requireAuth(request)}
                     errorElement={<Error />}
                 />
                 <Route
@@ -80,26 +80,32 @@ const router = createBrowserRouter(
                     <Route
                         index
                         element={<HostVanInfo />}
-                        loader={async () => await requireAuth()}
+                        loader={async ({ request }) =>
+                            await requireAuth(request)
+                        }
                         errorElement={<Error />}
                     />
                     <Route
                         path="pricing"
                         element={<HostVanPricing />}
-                        loader={async () => await requireAuth()}
+                        loader={async ({ request }) =>
+                            await requireAuth(request)
+                        }
                         errorElement={<Error />}
                     />
                     <Route
                         path="photos"
                         element={<HostVanPhotos />}
-                        loader={async () => await requireAuth()}
+                        loader={async ({ request }) =>
+                            await requireAuth(request)
+                        }
                         errorElement={<Error />}
                     />
                 </Route>
                 <Route
                     path="reviews"
                     element={<Reviews />}
-                    loader={async () => await requireAuth()}
+                    loader={async ({ request }) => await requireAuth(request)}
                     errorElement={<Error />}
                 />
             </Route>

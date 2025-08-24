@@ -3,8 +3,8 @@ import { getHostVans } from "../../api";
 import { requireAuth } from "../../utils";
 
 // eslint-disable-next-line react-refresh/only-export-components
-export async function loader({ params: { id } }) {
-    await requireAuth();
+export async function loader({ params: { id }, request }) {
+    await requireAuth(request);
     return getHostVans(id);
 }
 
